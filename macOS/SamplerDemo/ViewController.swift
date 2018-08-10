@@ -50,7 +50,7 @@ class ViewController: NSViewController, NSWindowDelegate {
     @IBOutlet weak var filterReleaseSlider: NSSlider!
     @IBOutlet weak var filterReleaseReadout: NSTextField!
 
-    var sfzFolderPath = "/Users/shane/Desktop/SuperFM SFZ"
+    var sfzFolderPath = Bundle.main.resourcePath! + "/Sounds"
 
     override func viewDidLoad() {
         super.viewDidLoad()

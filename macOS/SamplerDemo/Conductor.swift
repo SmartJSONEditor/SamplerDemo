@@ -57,9 +57,7 @@ class Conductor {
         //loadAndMapCompressedSampleFiles()
 
         // Preferred method: use SFZ file
-        // You can download a small set of ready-to-use SFZ files and samples from
-        // http://audiokit.io/downloads/ROMPlayerInstruments.zip
-        sampler.loadSFZ(path: "/Users/shane/Downloads/ROMPlayer Instruments", fileName: "TX Brass.sfz")
+        sampler.loadSFZ(path: Bundle.main.resourcePath! + "/Sounds", fileName: "TX Brass.sfz")
 
         // Illustration of how to load single-cycle waveforms
         // See https://www.adventurekid.se/akrt/waveforms/ to obtain the "AdventureKid" WAV files.

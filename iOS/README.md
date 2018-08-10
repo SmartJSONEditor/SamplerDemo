@@ -1,5 +1,15 @@
 # AudioKit Sampler Demo for iOS
 
+## Installation with Cocoapods
+
+From the command line run
+
+    > pod install
+
+Then open the generated workspace file:
+
+    > open SamplerDemo.xcworkspace
+
 ## Getting samples into the program
 Note you must **run the SamplerDemo program once on your iOS device** to get it ready to work with samples. When you do this, it won't make any sound at all, because there are no samples.
 

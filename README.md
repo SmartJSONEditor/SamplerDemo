@@ -2,6 +2,16 @@
 
 This demo allows you to try out the new AKSampler instrument. Unlike the old "AKSampler", which was just a wrapper around the **AUSampler** Audio Unit built into macOS and iOS, the new one is built entirely from scratch.
 
+## Installation with Cocoapods
+
+Inside either the iOS or macOS directory, depending on which version of the app you're installing, run the command line:
+
+    > pod install
+
+Then open the generated workspace file:
+
+    > open SamplerDemo.xcworkspace
+
 ## Demo samples
 
 The demo samples are the same as the ones included in the AudioKit **ROMPlayer** code repo on GitHub. They have been compressed using [WavPack](http://www.wavpack.com), and a `.sfz` metadata file has been added, to specify key/velocity mapping and loop points.
