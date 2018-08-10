@@ -98,9 +98,8 @@ class Conductor {
         let info = ProcessInfo.processInfo
         let begin = info.systemUptime
 
-        let folderURL = FileManagerUtils.shared.getDocsUrl("ROMPlayer Instruments")
         let sfzFiles = [ "TX Brass.sfz", "TX LoTine81z.sfz", "TX Metalimba.sfz", "TX Pluck Bass.sfz" ]
-        sampler.loadSFZ(path: folderURL.path, fileName: sfzFiles[byIndex])
+        sampler.loadSFZ(path: Bundle.main.resourcePath! + "/Sounds/", fileName: sfzFiles[byIndex])
 
         let elapsedTime = info.systemUptime - begin
         AKLog("Time to load samples \(elapsedTime) seconds")

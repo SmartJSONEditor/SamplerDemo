@@ -14,6 +14,7 @@
 		3404A80B20509A3600A2C9E4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3404A80920509A3600A2C9E4 /* LaunchScreen.storyboard */; };
 		3404A81720509C7B00A2C9E4 /* Conductor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3404A81520509C7B00A2C9E4 /* Conductor.swift */; };
 		3404A81820509C7B00A2C9E4 /* FileManagerUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3404A81620509C7B00A2C9E4 /* FileManagerUtils.swift */; };
+		C48FCEB2211D5E1A000D7717 /* Sounds in Resources */ = {isa = PBXBuildFile; fileRef = C48FCEB1211D5E19000D7717 /* Sounds */; };
 		C59567BE263087EE905FD5FE /* Pods_SamplerDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 523E146B6999BCDE5804C0B0 /* Pods_SamplerDemo.framework */; };
 /* End PBXBuildFile section */
 
@@ -30,6 +31,7 @@
 		3404A81520509C7B00A2C9E4 /* Conductor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Conductor.swift; sourceTree = "<group>"; };
 		3404A81620509C7B00A2C9E4 /* FileManagerUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileManagerUtils.swift; sourceTree = "<group>"; };
 		523E146B6999BCDE5804C0B0 /* Pods_SamplerDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SamplerDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C48FCEB1211D5E19000D7717 /* Sounds */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Sounds; path = ../../Sounds; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +84,7 @@
 				3404A80720509A3600A2C9E4 /* Assets.xcassets */,
 				3404A80920509A3600A2C9E4 /* LaunchScreen.storyboard */,
 				3404A80C20509A3600A2C9E4 /* Info.plist */,
+				C48FCEB1211D5E19000D7717 /* Sounds */,
 			);
 			path = SamplerDemo;
 			sourceTree = "<group>";
@@ -156,6 +159,7 @@
 			files = (
 				3404A80B20509A3600A2C9E4 /* LaunchScreen.storyboard in Resources */,
 				3404A80820509A3600A2C9E4 /* Assets.xcassets in Resources */,
+				C48FCEB2211D5E1A000D7717 /* Sounds in Resources */,
 				3404A80620509A3600A2C9E4 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
