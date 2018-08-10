@@ -1,6 +1,10 @@
-# AKSamplerDemo
+# AudioKit Sampler Demo
 
 This demo allows you to try out the new AKSampler instrument. Unlike the old "AKSampler", which was just a wrapper around the **AUSampler** Audio Unit built into macOS and iOS, the new one is built entirely from scratch.
+
+## Demo samples
+
+The demo samples are the same as the ones included in the AudioKit **ROMPlayer** code repo on GitHub. They have been compressed using [WavPack](http://www.wavpack.com), and a `.sfz` metadata file has been added, to specify key/velocity mapping and loop points.
 
 ## Using your own samples
 Preparing samples for any sampler instrument is a somewhat complex process. The basic steps are:
