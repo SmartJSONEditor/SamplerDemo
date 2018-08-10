@@ -122,11 +122,11 @@ class Conductor {
         midi.openInput(midi.inputNames[byIndex])
     }
 
-    func loadSfz(folderPath: String, sfzFileName: String) {
+    func loadSFZ(folderPath: String, sfzFileName: String) {
         let info = ProcessInfo.processInfo
         let begin = info.systemUptime
 
-        sampler.betterLoadUsingSfzFile(folderPath: folderPath, sfzFileName: sfzFileName)
+        sampler.betterLoadUsingSFZFile(folderPath: folderPath, sfzFileName: sfzFileName)
 
         let elapsedTime = info.systemUptime - begin
         AKLog("Time to load samples \(elapsedTime) seconds")

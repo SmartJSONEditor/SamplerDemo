@@ -133,7 +133,7 @@ class ViewController: NSViewController, NSWindowDelegate {
     }
 
     @IBAction func onSampleSetSelect(_ sender: NSPopUpButton) {
-        conductor.loadSfz(folderPath: sfzFolderPath, sfzFileName: sender.titleOfSelectedItem!)
+        conductor.loadSFZ(folderPath: sfzFolderPath, sfzFileName: sender.titleOfSelectedItem!)
     }
 
     @IBAction func onVolumeSliderChange(_ sender: NSSlider) {
