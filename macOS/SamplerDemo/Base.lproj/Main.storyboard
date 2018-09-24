@@ -1251,6 +1251,13 @@
                         <outlet property="ampReleaseSlider" destination="uqQ-KS-SRv" id="CaZ-bM-TLi"/>
                         <outlet property="ampSustainReadout" destination="xfm-vQ-7ZM" id="Bm3-gV-af8"/>
                         <outlet property="ampSustainSlider" destination="aeU-ki-B03" id="etW-Tg-VYk"/>
+                        <outlet property="buttonNoteA" destination="H17-1U-rcv" id="TMp-7Y-ykt"/>
+                        <outlet property="buttonNoteB" destination="tob-Po-ox2" id="JvU-rt-fmg"/>
+                        <outlet property="buttonNoteC" destination="vbG-08-afr" id="El8-cn-yKf"/>
+                        <outlet property="buttonNoteD" destination="2RL-bZ-A8W" id="pXI-gA-tBM"/>
+                        <outlet property="buttonNoteE" destination="Hlb-PT-cCr" id="W66-VR-uD9"/>
+                        <outlet property="buttonNoteF" destination="neE-BT-aEU" id="Z18-EJ-yBd"/>
+                        <outlet property="buttonNoteG" destination="dpK-Q7-N3E" id="WqW-RC-cGS"/>
                         <outlet property="filterAttackReadout" destination="mm4-Nw-585" id="AI6-Dt-42p"/>
                         <outlet property="filterAttackSlider" destination="lTH-tP-EeX" id="PDK-Jj-FCK"/>
                         <outlet property="filterCutoffReadout" destination="Uvh-oC-4ux" id="57N-uA-zlp"/>
