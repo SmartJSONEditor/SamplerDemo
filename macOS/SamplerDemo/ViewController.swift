@@ -21,7 +21,7 @@ class ViewController: NSViewController, NSWindowDelegate {
 
     /// Enumerates all keyboard keys and maps them to `MidiNoteNumber`.
     ///
-    enum KeyboardNoteID: String {
+    enum KeyboardNoteID: String, CaseIterable {
         case NoteC
         case NoteD
         case NoteE
@@ -45,11 +45,14 @@ class ViewController: NSViewController, NSWindowDelegate {
     //------------------------------------------------------------------------------
     // Properties
 
-    let conductor = Conductor.shared
+    private let conductor = Conductor.shared
 
-    let sampler = Conductor.shared.sampler
+    private let sampler = Conductor.shared.sampler
 
-    var sfzFolderPath = Bundle.main.resourcePath! + "/Sounds"
+    private var sfzFolderPath = Bundle.main.resourcePath! + "/Sounds"
+
+    // these are the key-codes for the keys: Q W E R T Z U - in that order.
+    private let keyCodesQWERTZU: [UInt16] = [12, 13, 14, 15, 17, 16, 32]
 
     //------------------------------------------------------------------------------
     // IBOutlets & IBActions
@@ -271,11 +274,36 @@ class ViewController: NSViewController, NSWindowDelegate {
 
     override func viewDidAppear() {
         self.view.window?.delegate = self
+        // we want our VC to be first responder so it can handle keyboard events
+        self.view.window?.makeFirstResponder(self)
     }
 
     func windowShouldClose(_ sender: NSWindow) -> Bool {
         NSApplication.shared.terminate(self)
         return true
+    }
+
+    //------------------------------------------------------------------------------
+    // VC - Keyboard Input
+
+    override func keyDown(with event: NSEvent) {
+        if let noteIndex = keyCodesQWERTZU.firstIndex(where: { $0 == event.keyCode })
+        {
+            let midiNoteNumber = KeyboardNoteID.allCases[noteIndex].midiNoteNumber
+            DispatchQueue.main.async {
+                self.conductor.playNote(note: midiNoteNumber, velocity: 127, channel: 0)
+            }
+        }
+    }
+
+    override func keyUp(with event: NSEvent) {
+        if let noteIndex = keyCodesQWERTZU.firstIndex(where: { $0 == event.keyCode })
+        {
+            let midiNoteNumber = KeyboardNoteID.allCases[noteIndex].midiNoteNumber
+            DispatchQueue.main.async {
+                self.conductor.stopNote(note: midiNoteNumber, channel: 0)
+            }
+        }
     }
 
 }
