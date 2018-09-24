@@ -32,12 +32,12 @@ class ViewController: NSViewController, NSWindowDelegate {
         var midiNoteNumber: MIDINoteNumber {
             switch self {
             case .NoteC: return MIDINoteNumber(41)
-            case .NoteD: return MIDINoteNumber(42)
-            case .NoteE: return MIDINoteNumber(43)
-            case .NoteF: return MIDINoteNumber(44)
-            case .NoteG: return MIDINoteNumber(45)
-            case .NoteA: return MIDINoteNumber(46)
-            case .NoteB: return MIDINoteNumber(47)
+            case .NoteD: return MIDINoteNumber(43)
+            case .NoteE: return MIDINoteNumber(45)
+            case .NoteF: return MIDINoteNumber(47)
+            case .NoteG: return MIDINoteNumber(48)
+            case .NoteA: return MIDINoteNumber(50)
+            case .NoteB: return MIDINoteNumber(52)
             }
         }
     }
