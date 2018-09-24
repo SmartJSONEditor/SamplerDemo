@@ -10,10 +10,49 @@ import Cocoa
 import AudioKit
 import AudioKitUI
 
+//------------------------------------------------------------------------------
+// VC
+//------------------------------------------------------------------------------
+
 class ViewController: NSViewController, NSWindowDelegate {
 
+    //------------------------------------------------------------------------------
+    // Sub Types
+
+    /// Enumerates all keyboard keys and maps them to `MidiNoteNumber`.
+    ///
+    enum KeyboardNoteID: String {
+        case NoteC
+        case NoteD
+        case NoteE
+        case NoteF
+        case NoteG
+        case NoteA
+        case NoteB
+        var midiNoteNumber: MIDINoteNumber {
+            switch self {
+            case .NoteC: return MIDINoteNumber(41)
+            case .NoteD: return MIDINoteNumber(42)
+            case .NoteE: return MIDINoteNumber(43)
+            case .NoteF: return MIDINoteNumber(44)
+            case .NoteG: return MIDINoteNumber(45)
+            case .NoteA: return MIDINoteNumber(46)
+            case .NoteB: return MIDINoteNumber(47)
+            }
+        }
+    }
+
+    //------------------------------------------------------------------------------
+    // Properties
+
     let conductor = Conductor.shared
+
     let sampler = Conductor.shared.sampler
+
+    var sfzFolderPath = Bundle.main.resourcePath! + "/Sounds"
+
+    //------------------------------------------------------------------------------
+    // IBOutlets & IBActions
 
     @IBOutlet weak var sampleSetPopup: NSPopUpButton!
 
@@ -49,68 +88,6 @@ class ViewController: NSViewController, NSWindowDelegate {
     @IBOutlet weak var filterSustainReadout: NSTextField!
     @IBOutlet weak var filterReleaseSlider: NSSlider!
     @IBOutlet weak var filterReleaseReadout: NSTextField!
-
-    var sfzFolderPath = Bundle.main.resourcePath! + "/Sounds"
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        conductor.midi.addListener(self)
-
-        sampleSetPopup.removeAllItems()
-        do {
-            for fileName in try FileManager.default.contentsOfDirectory(atPath: sfzFolderPath).sorted() {
-                if fileName.hasSuffix(".sfz") {
-                    sampleSetPopup.addItem(withTitle: fileName)
-                }
-            }
-        } catch {
-            AKLog(error)
-        }
-
-        sampler.filterCutoff = 10.0
-
-        masterVolumeSlider.intValue = Int32(100 * sampler.masterVolume)
-        masterVolumeReadout.intValue = Int32(100 * sampler.masterVolume)
-        pitchOffsetSlider.doubleValue = sampler.pitchBend
-        pitchOffsetReadout.doubleValue = sampler.pitchBend
-        vibratoDepthSlider.doubleValue = sampler.vibratoDepth
-        vibratoDepthReadout.doubleValue = sampler.vibratoDepth
-
-        filterEnableCheckbox.state = sampler.filterEnable ? .on : .off
-        filterCutoffSlider.intValue = Int32(sampler.filterCutoff)
-        filterCutoffReadout.doubleValue = sampler.filterCutoff
-        filterEgStrengthReadout.doubleValue = sampler.filterStrength
-        filterResonanceSlider.doubleValue = sampler.filterResonance
-        filterResonanceReadout.doubleValue = sampler.filterResonance
-
-        ampAttackSlider.doubleValue = sampler.attackDuration
-        ampAttackReadout.doubleValue = sampler.attackDuration
-        ampDecaySlider.doubleValue = sampler.decayDuration
-        ampDecayReadout.doubleValue = sampler.decayDuration
-        ampSustainSlider.intValue = Int32(100 * sampler.sustainLevel)
-        ampSustainReadout.intValue = Int32(100 * sampler.sustainLevel)
-        ampReleaseSlider.doubleValue = sampler.releaseDuration
-        ampReleaseReadout.doubleValue = sampler.releaseDuration
-
-        filterAttackSlider.doubleValue = sampler.filterAttackDuration
-        filterAttackReadout.doubleValue = sampler.filterAttackDuration
-        filterDecaySlider.doubleValue = sampler.filterDecayDuration
-        filterDecayReadout.doubleValue = sampler.filterDecayDuration
-        filterSustainSlider.intValue = Int32(100 * sampler.filterSustainLevel)
-        filterSustainReadout.intValue = Int32(100 * sampler.filterSustainLevel)
-        filterReleaseSlider.doubleValue = sampler.filterReleaseDuration
-        filterReleaseReadout.doubleValue = sampler.filterReleaseDuration
-    }
-
-    override func viewDidAppear() {
-        self.view.window?.delegate = self
-    }
-
-    func windowShouldClose(_ sender: NSWindow) -> Bool {
-        NSApplication.shared.terminate(self)
-        return true
-    }
 
     @IBAction func onFolderButton(_ sender: NSButton) {
         let openPanel = NSOpenPanel()
@@ -209,7 +186,103 @@ class ViewController: NSViewController, NSWindowDelegate {
         filterReleaseReadout.floatValue = sender.floatValue
         sampler.filterReleaseDuration = sender.doubleValue
     }
+
+    // The action for all keyboard buttons
+    @IBAction func onButtonKeyboard(_ sender: NSButton) {
+        guard let noteButton = sender as? KeyboardNoteButton
+            else { print("ERROR: Button not correctly configured."); return }
+
+        if let buttonIdentifier = sender.identifier,
+            let keyNoteID = KeyboardNoteID(rawValue: buttonIdentifier.rawValue)
+        {
+            if noteButton.isPressed {
+                DispatchQueue.main.async {
+                    self.conductor.playNote(
+                        note: keyNoteID.midiNoteNumber,
+                        velocity: 127,
+                        channel: 0)
+                }
+            } else {
+                DispatchQueue.main.async {
+                    self.conductor.stopNote(
+                        note: keyNoteID.midiNoteNumber,
+                        channel: 0)
+                }
+            }
+        } else {
+            print("ERROR: Button has no identifier set or the Note-ID is unknown.")
+        }
+    }
+
+    //------------------------------------------------------------------------------
+    // Lifecycle
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        conductor.midi.addListener(self)
+
+        sampleSetPopup.removeAllItems()
+
+        do {
+            for fileName in try FileManager.default.contentsOfDirectory(atPath: sfzFolderPath).sorted() {
+                if fileName.hasSuffix(".sfz") {
+                    sampleSetPopup.addItem(withTitle: fileName)
+                }
+            }
+        } catch {
+            AKLog(error)
+        }
+
+        sampler.filterCutoff = 10.0
+
+        masterVolumeSlider.intValue = Int32(100 * sampler.masterVolume)
+        masterVolumeReadout.intValue = Int32(100 * sampler.masterVolume)
+        pitchOffsetSlider.doubleValue = sampler.pitchBend
+        pitchOffsetReadout.doubleValue = sampler.pitchBend
+        vibratoDepthSlider.doubleValue = sampler.vibratoDepth
+        vibratoDepthReadout.doubleValue = sampler.vibratoDepth
+
+        filterEnableCheckbox.state = sampler.filterEnable ? .on : .off
+        filterCutoffSlider.intValue = Int32(sampler.filterCutoff)
+        filterCutoffReadout.doubleValue = sampler.filterCutoff
+        filterEgStrengthReadout.doubleValue = sampler.filterStrength
+        filterResonanceSlider.doubleValue = sampler.filterResonance
+        filterResonanceReadout.doubleValue = sampler.filterResonance
+
+        ampAttackSlider.doubleValue = sampler.attackDuration
+        ampAttackReadout.doubleValue = sampler.attackDuration
+        ampDecaySlider.doubleValue = sampler.decayDuration
+        ampDecayReadout.doubleValue = sampler.decayDuration
+        ampSustainSlider.intValue = Int32(100 * sampler.sustainLevel)
+        ampSustainReadout.intValue = Int32(100 * sampler.sustainLevel)
+        ampReleaseSlider.doubleValue = sampler.releaseDuration
+        ampReleaseReadout.doubleValue = sampler.releaseDuration
+
+        filterAttackSlider.doubleValue = sampler.filterAttackDuration
+        filterAttackReadout.doubleValue = sampler.filterAttackDuration
+        filterDecaySlider.doubleValue = sampler.filterDecayDuration
+        filterDecayReadout.doubleValue = sampler.filterDecayDuration
+        filterSustainSlider.intValue = Int32(100 * sampler.filterSustainLevel)
+        filterSustainReadout.intValue = Int32(100 * sampler.filterSustainLevel)
+        filterReleaseSlider.doubleValue = sampler.filterReleaseDuration
+        filterReleaseReadout.doubleValue = sampler.filterReleaseDuration
+    }
+
+    override func viewDidAppear() {
+        self.view.window?.delegate = self
+    }
+
+    func windowShouldClose(_ sender: NSWindow) -> Bool {
+        NSApplication.shared.terminate(self)
+        return true
+    }
+
 }
+
+//------------------------------------------------------------------------------
+// VC - Extension for MIDI
+//------------------------------------------------------------------------------
 
 extension ViewController: AKMIDIListener {
 
