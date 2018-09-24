@@ -54,6 +54,15 @@ class ViewController: NSViewController, NSWindowDelegate {
     // these are the key-codes for the keys: Q W E R T Z U - in that order.
     private let keyCodesQWERTZU: [UInt16] = [12, 13, 14, 15, 17, 16, 32]
 
+    /// Array of references to all our keyboard buttons.
+    ///
+    /// We use this for visual feedback when a keyboard key triggers a note.
+    ///
+    private var allKeyboardNoteButtons: [KeyboardNoteButton] {
+        return [buttonNoteC, buttonNoteD, buttonNoteE, buttonNoteF,
+                buttonNoteG, buttonNoteA, buttonNoteB]
+    }
+
     //------------------------------------------------------------------------------
     // IBOutlets & IBActions
 
@@ -91,6 +100,14 @@ class ViewController: NSViewController, NSWindowDelegate {
     @IBOutlet weak var filterSustainReadout: NSTextField!
     @IBOutlet weak var filterReleaseSlider: NSSlider!
     @IBOutlet weak var filterReleaseReadout: NSTextField!
+
+    @IBOutlet var buttonNoteC: KeyboardNoteButton!
+    @IBOutlet var buttonNoteD: KeyboardNoteButton!
+    @IBOutlet var buttonNoteE: KeyboardNoteButton!
+    @IBOutlet var buttonNoteF: KeyboardNoteButton!
+    @IBOutlet var buttonNoteG: KeyboardNoteButton!
+    @IBOutlet var buttonNoteA: KeyboardNoteButton!
+    @IBOutlet var buttonNoteB: KeyboardNoteButton!
 
     @IBAction func onFolderButton(_ sender: NSButton) {
         let openPanel = NSOpenPanel()
@@ -290,6 +307,7 @@ class ViewController: NSViewController, NSWindowDelegate {
         if let noteIndex = keyCodesQWERTZU.firstIndex(where: { $0 == event.keyCode })
         {
             let midiNoteNumber = KeyboardNoteID.allCases[noteIndex].midiNoteNumber
+            allKeyboardNoteButtons[noteIndex].isHighlighted = true
             DispatchQueue.main.async {
                 self.conductor.playNote(note: midiNoteNumber, velocity: 127, channel: 0)
             }
@@ -300,6 +318,7 @@ class ViewController: NSViewController, NSWindowDelegate {
         if let noteIndex = keyCodesQWERTZU.firstIndex(where: { $0 == event.keyCode })
         {
             let midiNoteNumber = KeyboardNoteID.allCases[noteIndex].midiNoteNumber
+            allKeyboardNoteButtons[noteIndex].isHighlighted = false
             DispatchQueue.main.async {
                 self.conductor.stopNote(note: midiNoteNumber, channel: 0)
             }
