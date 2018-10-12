@@ -14,7 +14,7 @@ import AudioKitUI
 // VC
 //------------------------------------------------------------------------------
 
-class ViewController: NSViewController, NSWindowDelegate {
+class ViewController: NSViewController, NSWindowDelegate, AKKeyboardDelegate {
 
     //------------------------------------------------------------------------------
     // Sub Types
@@ -31,13 +31,13 @@ class ViewController: NSViewController, NSWindowDelegate {
         case NoteB
         var midiNoteNumber: MIDINoteNumber {
             switch self {
-            case .NoteC: return MIDINoteNumber(41)
-            case .NoteD: return MIDINoteNumber(43)
-            case .NoteE: return MIDINoteNumber(45)
-            case .NoteF: return MIDINoteNumber(47)
-            case .NoteG: return MIDINoteNumber(48)
-            case .NoteA: return MIDINoteNumber(50)
-            case .NoteB: return MIDINoteNumber(52)
+            case .NoteC: return MIDINoteNumber(48)
+            case .NoteD: return MIDINoteNumber(50)
+            case .NoteE: return MIDINoteNumber(52)
+            case .NoteF: return MIDINoteNumber(54)
+            case .NoteG: return MIDINoteNumber(56)
+            case .NoteA: return MIDINoteNumber(57)
+            case .NoteB: return MIDINoteNumber(59)
             }
         }
     }
@@ -53,16 +53,7 @@ class ViewController: NSViewController, NSWindowDelegate {
 
     // these are the key-codes for the keys: Q W E R T Z U - in that order.
     private let keyCodesQWERTZU: [UInt16] = [12, 13, 14, 15, 17, 16, 32]
-
-    /// Array of references to all our keyboard buttons.
-    ///
-    /// We use this for visual feedback when a keyboard key triggers a note.
-    ///
-    private var allKeyboardNoteButtons: [KeyboardNoteButton] {
-        return [buttonNoteC, buttonNoteD, buttonNoteE, buttonNoteF,
-                buttonNoteG, buttonNoteA, buttonNoteB]
-    }
-
+    
     //------------------------------------------------------------------------------
     // IBOutlets & IBActions
 
@@ -101,13 +92,7 @@ class ViewController: NSViewController, NSWindowDelegate {
     @IBOutlet weak var filterReleaseSlider: NSSlider!
     @IBOutlet weak var filterReleaseReadout: NSTextField!
 
-    @IBOutlet var buttonNoteC: KeyboardNoteButton!
-    @IBOutlet var buttonNoteD: KeyboardNoteButton!
-    @IBOutlet var buttonNoteE: KeyboardNoteButton!
-    @IBOutlet var buttonNoteF: KeyboardNoteButton!
-    @IBOutlet var buttonNoteG: KeyboardNoteButton!
-    @IBOutlet var buttonNoteA: KeyboardNoteButton!
-    @IBOutlet var buttonNoteB: KeyboardNoteButton!
+    @IBOutlet weak var keyboardContainer: NSView!
 
     @IBAction func onFolderButton(_ sender: NSButton) {
         let openPanel = NSOpenPanel()
@@ -254,6 +239,11 @@ class ViewController: NSViewController, NSWindowDelegate {
             AKLog(error)
         }
 
+        let keyboard = AKKeyboardView(width: Int(keyboardContainer.frame.width), height: Int(keyboardContainer.frame.height))
+        keyboard.polyphonicMode = false
+        keyboard.delegate = self
+        keyboardContainer.addSubview(keyboard)
+
         sampler.filterCutoff = 10.0
 
         masterVolumeSlider.intValue = Int32(100 * sampler.masterVolume)
@@ -303,26 +293,12 @@ class ViewController: NSViewController, NSWindowDelegate {
     //------------------------------------------------------------------------------
     // VC - Keyboard Input
 
-    override func keyDown(with event: NSEvent) {
-        if let noteIndex = keyCodesQWERTZU.firstIndex(where: { $0 == event.keyCode })
-        {
-            let midiNoteNumber = KeyboardNoteID.allCases[noteIndex].midiNoteNumber
-            allKeyboardNoteButtons[noteIndex].isHighlighted = true
-            DispatchQueue.main.async {
-                self.conductor.playNote(note: midiNoteNumber, velocity: 127, channel: 0)
-            }
-        }
+    func noteOn(note: MIDINoteNumber) {
+        conductor.playNote(note: note, velocity: 127, channel: 0)
     }
 
-    override func keyUp(with event: NSEvent) {
-        if let noteIndex = keyCodesQWERTZU.firstIndex(where: { $0 == event.keyCode })
-        {
-            let midiNoteNumber = KeyboardNoteID.allCases[noteIndex].midiNoteNumber
-            allKeyboardNoteButtons[noteIndex].isHighlighted = false
-            DispatchQueue.main.async {
-                self.conductor.stopNote(note: midiNoteNumber, channel: 0)
-            }
-        }
+    func noteOff(note: MIDINoteNumber) {
+        conductor.stopNote(note: note, channel: 0)
     }
 
 }

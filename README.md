@@ -2,6 +2,8 @@
 
 This demo allows you to try out the new AKSampler instrument. Unlike the old "AKSampler", which was just a wrapper around the **AUSampler** Audio Unit built into macOS and iOS, the new one is built entirely from scratch.
 
+![Screenshot](screenshot.png)
+
 ## Installation with Cocoapods
 
 Inside either the iOS or macOS directory, depending on which version of the app you're installing, run the command line:

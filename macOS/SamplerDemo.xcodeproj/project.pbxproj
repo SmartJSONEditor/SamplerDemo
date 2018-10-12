@@ -110,7 +110,6 @@
 				3404A8202050AA3500A2C9E4 /* Sources */,
 				3404A8212050AA3500A2C9E4 /* Frameworks */,
 				3404A8222050AA3500A2C9E4 /* Resources */,
-				34F462FE452314CC37C15810 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -175,28 +174,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		34F462FE452314CC37C15810 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-SamplerDemo/Pods-SamplerDemo-frameworks.sh",
-				"${PODS_ROOT}/AudioKit/macOS/AudioKitUI.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AudioKitUI.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SamplerDemo/Pods-SamplerDemo-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		E27D4137B35CEA46CCF8C0B4 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
