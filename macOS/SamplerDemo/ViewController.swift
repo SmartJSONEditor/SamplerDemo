@@ -67,6 +67,8 @@ class ViewController: NSViewController, NSWindowDelegate, AKKeyboardDelegate {
     @IBOutlet weak var vibratoDepthReadout: NSTextField!
 
     @IBOutlet weak var filterEnableCheckbox: NSButton!
+    @IBOutlet weak var filterKeyTrackingSlider: NSSlider!
+    @IBOutlet weak var filterKeyTrackingReadout: NSTextField!
     @IBOutlet weak var filterCutoffSlider: NSSlider!
     @IBOutlet weak var filterCutoffReadout: NSTextField!
     @IBOutlet weak var filterEgStrengthSlider: NSSlider!
@@ -137,6 +139,11 @@ class ViewController: NSViewController, NSWindowDelegate, AKKeyboardDelegate {
         sampler.filterEnable = sender.state == .on
     }
 
+    @IBAction func onFilterKeyTrackingSliderChange(_ sender: NSSlider) {
+        filterKeyTrackingReadout.doubleValue = sender.doubleValue
+        sampler.keyTrackingFraction = sender.doubleValue
+    }
+    
     @IBAction func onFilterCutoffSliderChange(_ sender: NSSlider) {
         filterCutoffReadout.doubleValue = sender.doubleValue
         sampler.filterCutoff = sender.doubleValue
@@ -254,6 +261,8 @@ class ViewController: NSViewController, NSWindowDelegate, AKKeyboardDelegate {
         vibratoDepthReadout.doubleValue = sampler.vibratoDepth
 
         filterEnableCheckbox.state = sampler.filterEnable ? .on : .off
+        filterKeyTrackingSlider.doubleValue = sampler.keyTrackingFraction
+        filterKeyTrackingReadout.doubleValue = sampler.keyTrackingFraction
         filterCutoffSlider.intValue = Int32(sampler.filterCutoff)
         filterCutoffReadout.doubleValue = sampler.filterCutoff
         filterEgStrengthReadout.doubleValue = sampler.filterStrength

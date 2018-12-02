@@ -9,7 +9,7 @@
 import AudioKit
 
 extension AKSampler {
-    open func betterLoadUsingSFZFile(folderPath: String, sfzFileName: String) {
+    open func loadSfzWithEmbeddedSpacesInSampleNames(folderPath: String, sfzFileName: String) {
 
         stopAllVoices()
         unloadAllSamples()

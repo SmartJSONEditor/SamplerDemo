@@ -57,18 +57,16 @@ class Conductor {
         //loadAndMapCompressedSampleFiles()
 
         // Preferred method: use SFZ file
-        sampler.loadSFZ(path: Bundle.main.resourcePath! + "/Sounds", fileName: "TX Brass.sfz")
+        loadSFZ(folderPath: Bundle.main.resourcePath! + "/Sounds", sfzFileName: "TX Brass.sfz")
 
         // Illustration of how to load single-cycle waveforms
         // See https://www.adventurekid.se/akrt/waveforms/ to obtain the "AdventureKid" WAV files.
 //        do {
-//            let path = "/Users/shane/Desktop/AKWF Samples/AKWF_bw_sawbright/AKWF_bsaw_0005.wav"
+//            let path = "/Users/shane/Desktop/AKSampler Sounds/AKWF Samples/AKWF_bw_sawbright/AKWF_bsaw_0005.wav"
 //            let furl = URL(fileURLWithPath: path)
 //            let file = try AKAudioFile(forReading: furl)
-//            let desc = AKSampleDescriptor(noteNumber: 26, noteHz: 44100.0/600,
-//                                          min_note: 0, max_note: 127, min_vel: 0, max_vel: 127,
-//                                          bLoop: true, fLoopStart: 0.0, fLoopEnd: 1.0, fStart: 0.0, fEnd: 0.0)
-//            sampler.loadAKAudioFile(sd: desc, file: file)
+//            let desc = AKSampleDescriptor(noteNumber: 26, noteFrequency: 44100.0/500, minimumNoteNumber: 0, maximumNoteNumber: 127, minimumVelocity: 0, maximumVelocity: 127, isLooping: true, loopStartPoint: 0.0, loopEndPoint: 1.0, startPoint: 0.0, endPoint: 1.0)
+//            sampler.loadAKAudioFile(from: desc, file: file)
 //        } catch {
 //            AKLog("\(error.localizedDescription)")
 //        }
@@ -78,13 +76,14 @@ class Conductor {
         // illustration of how to create a single-cycle waveform programmatically in Swift
 //        var myData = [Float](repeating: 0.0, count: 1000)
 //        for i in 0..<1000 {
-//            myData[i] = sin(2.0 * Float(i)/1000 * Float.pi)
+//            //myData[i] = sin(2.0 * Float(i)/999 * Float.pi)
+//            myData[i] = Float(0.5 * Float(i) / 999.0)
 //        }
 //        let sampleRate = Float(AKSettings.sampleRate)
-//        let desc = AKSampleDescriptor(noteNumber: 69, noteHz: sampleRate/1000, min_note: -1, max_note: -1, min_vel: -1, max_vel: -1, bLoop: true, fLoopStart: 0, fLoopEnd: 1, fStart: 0, fEnd: 0)
+//        let desc = AKSampleDescriptor(noteNumber: 69, noteFrequency: sampleRate/1000, minimumNoteNumber: -1, maximumNoteNumber: -1, minimumVelocity: -1, maximumVelocity: -1, isLooping: true, loopStartPoint: 0, loopEndPoint: 1, startPoint: 0, endPoint: 0)
 //        let ptr = UnsafeMutablePointer<Float>(mutating: myData)
-//        let ddesc = AKSampleDataDescriptor(sd: desc, sampleRateHz: sampleRate, bInterleaved: false, nChannels: 1, nSamples: 1000, pData: ptr)
-//        sampler.loadRawSampleData(sdd: ddesc)
+//        let ddesc = AKSampleDataDescriptor(sampleDescriptor: desc, sampleRate: sampleRate, isInterleaved: false, channelCount: 1, sampleCount: 1000, data: ptr)
+//        sampler.loadRawSampleData(from: ddesc)
 //        sampler.setLoop(thruRelease: true)
 //        sampler.buildSimpleKeyMap()
 
@@ -126,7 +125,8 @@ class Conductor {
         let info = ProcessInfo.processInfo
         let begin = info.systemUptime
 
-        sampler.betterLoadUsingSFZFile(folderPath: folderPath, sfzFileName: sfzFileName)
+        sampler.loadSfzWithEmbeddedSpacesInSampleNames(folderPath: folderPath,
+                                                       sfzFileName: sfzFileName)
 
         let elapsedTime = info.systemUptime - begin
         AKLog("Time to load samples \(elapsedTime) seconds")
