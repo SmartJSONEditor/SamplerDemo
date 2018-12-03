@@ -14,8 +14,8 @@
 		3404A82F2050AA3500A2C9E4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3404A82D2050AA3500A2C9E4 /* Main.storyboard */; };
 		3404A83D2050AB9900A2C9E4 /* Conductor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3404A83C2050AB9900A2C9E4 /* Conductor.swift */; };
 		3447616720795BC200AE1C4F /* AKSampler+moreSFZ.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3447616620795BC200AE1C4F /* AKSampler+moreSFZ.swift */; };
-		346D624921AF3D8A00E71C8B /* AudioKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 346D624621AF3D4700E71C8B /* AudioKit.framework */; };
-		346D625521AF80EB00E71C8B /* AudioKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 346D625421AF80EB00E71C8B /* AudioKitUI.framework */; };
+		346D626621B5C97800E71C8B /* AudioKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 346D624621AF3D4700E71C8B /* AudioKit.framework */; };
+		346D626721B5C97D00E71C8B /* AudioKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 346D625421AF80EB00E71C8B /* AudioKitUI.framework */; };
 		C48FCEB0211D5A7E000D7717 /* Sounds in Resources */ = {isa = PBXBuildFile; fileRef = C48FCEAF211D5A7E000D7717 /* Sounds */; };
 /* End PBXBuildFile section */
 
@@ -32,6 +32,20 @@
 			containerPortal = 346D624021AF3D4600E71C8B /* AudioKit For macOS.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = EAFECEBD1F4EBBFE00A2B046;
+			remoteInfo = AudioKitUI;
+		};
+		346D626021B5C7DB00E71C8B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 346D624021AF3D4600E71C8B /* AudioKit For macOS.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = C42F36CB1C0582E6000E937C;
+			remoteInfo = AudioKit;
+		};
+		346D626421B5C7E200E71C8B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 346D624021AF3D4600E71C8B /* AudioKit For macOS.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = EAFECEBC1F4EBBFE00A2B046;
 			remoteInfo = AudioKitUI;
 		};
 /* End PBXContainerItemProxy section */
@@ -56,8 +70,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				346D625521AF80EB00E71C8B /* AudioKitUI.framework in Frameworks */,
-				346D624921AF3D8A00E71C8B /* AudioKit.framework in Frameworks */,
+				346D626721B5C97D00E71C8B /* AudioKitUI.framework in Frameworks */,
+				346D626621B5C97800E71C8B /* AudioKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -129,6 +143,8 @@
 			buildRules = (
 			);
 			dependencies = (
+				346D626521B5C7E200E71C8B /* PBXTargetDependency */,
+				346D626121B5C7DB00E71C8B /* PBXTargetDependency */,
 			);
 			name = SamplerDemo;
 			productName = AKSamplerDemo;
@@ -157,7 +173,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 3404A81F2050AA3500A2C9E4 /* Build configuration list for PBXProject "MY_SamplerDemo" */;
+			buildConfigurationList = 3404A81F2050AA3500A2C9E4 /* Build configuration list for PBXProject "SamplerDemo-develop" */;
 			compatibilityVersion = "Xcode 8.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -225,6 +241,19 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		346D626121B5C7DB00E71C8B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = AudioKit;
+			targetProxy = 346D626021B5C7DB00E71C8B /* PBXContainerItemProxy */;
+		};
+		346D626521B5C7E200E71C8B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = AudioKitUI;
+			targetProxy = 346D626421B5C7E200E71C8B /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		3404A82D2050AA3500A2C9E4 /* Main.storyboard */ = {
@@ -395,7 +424,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		3404A81F2050AA3500A2C9E4 /* Build configuration list for PBXProject "MY_SamplerDemo" */ = {
+		3404A81F2050AA3500A2C9E4 /* Build configuration list for PBXProject "SamplerDemo-develop" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				3404A8322050AA3500A2C9E4 /* Debug */,

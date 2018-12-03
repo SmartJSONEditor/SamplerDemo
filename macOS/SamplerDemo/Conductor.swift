@@ -65,7 +65,7 @@ class Conductor {
 //            let path = "/Users/shane/Desktop/AKSampler Sounds/AKWF Samples/AKWF_bw_sawbright/AKWF_bsaw_0005.wav"
 //            let furl = URL(fileURLWithPath: path)
 //            let file = try AKAudioFile(forReading: furl)
-//            let desc = AKSampleDescriptor(noteNumber: 26, noteFrequency: 44100.0/500, minimumNoteNumber: 0, maximumNoteNumber: 127, minimumVelocity: 0, maximumVelocity: 127, isLooping: true, loopStartPoint: 0.0, loopEndPoint: 1.0, startPoint: 0.0, endPoint: 1.0)
+//            let desc = AKSampleDescriptor(noteNumber: 26, noteFrequency: 44100.0/600, minimumNoteNumber: 0, maximumNoteNumber: 127, minimumVelocity: 0, maximumVelocity: 127, isLooping: true, loopStartPoint: 0, loopEndPoint: 599, startPoint: 0, endPoint: 599)
 //            sampler.loadAKAudioFile(from: desc, file: file)
 //        } catch {
 //            AKLog("\(error.localizedDescription)")
@@ -76,8 +76,8 @@ class Conductor {
         // illustration of how to create a single-cycle waveform programmatically in Swift
 //        var myData = [Float](repeating: 0.0, count: 1000)
 //        for i in 0..<1000 {
-//            //myData[i] = sin(2.0 * Float(i)/999 * Float.pi)
-//            myData[i] = Float(0.5 * Float(i) / 999.0)
+//            //myData[i] = sin(2.0 * Float(i)/999 * Float.pi)    // sine
+//            myData[i] = Float(0.5 * Float(i) / 999.0)           // sawtooth
 //        }
 //        let sampleRate = Float(AKSettings.sampleRate)
 //        let desc = AKSampleDescriptor(noteNumber: 69, noteFrequency: sampleRate/1000, minimumNoteNumber: -1, maximumNoteNumber: -1, minimumVelocity: -1, maximumVelocity: -1, isLooping: true, loopStartPoint: 0, loopEndPoint: 1, startPoint: 0, endPoint: 0)
@@ -94,13 +94,14 @@ class Conductor {
         sampler.releaseDuration = 0.5
 
         // optionally, enable the per-voice filters and set up the filter envelope
-        // (Try this with the AdventrueKid sawtooth waveform example above)
+        // (Try this with the sawtooth waveform example above)
 //        sampler.filterEnable = true
 //        sampler.filterCutoff = 20.0
 //        sampler.filterAttackDuration = 1.0
 //        sampler.filterDecayDuration = 1.0
 //        sampler.filterSustainLevel = 0.5
 //        sampler.filterReleaseDuration = 10.0
+//        sampler.filterEnvelopeVelocityScaling = 1.0
     }
 
     func addMIDIListener(_ listener: AKMIDIListener) {
