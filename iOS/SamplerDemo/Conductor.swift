@@ -99,17 +99,20 @@ class Conductor {
         let begin = info.systemUptime
 
         let sfzFiles = [ "TX Brass.sfz", "TX LoTine81z.sfz", "TX Metalimba.sfz", "TX Pluck Bass.sfz" ]
-        sampler.loadSFZ(path: Bundle.main.resourcePath! + "/Sounds/", fileName: sfzFiles[byIndex])
+        sampler.loadSfzWithEmbeddedSpacesInSampleNames(folderPath: Bundle.main.resourcePath! + "/Sounds/",
+                                                       sfzFileName: sfzFiles[byIndex])
 
         let elapsedTime = info.systemUptime - begin
         AKLog("Time to load samples \(elapsedTime) seconds")
     }
 
     func playNote(note: MIDINoteNumber, velocity: MIDIVelocity, channel: MIDIChannel) {
+        AKLog("playNote \(note) \(velocity)")
         sampler.play(noteNumber: offsetNote(note, semitones: synthSemitoneOffset), velocity: velocity)
     }
 
     func stopNote(note: MIDINoteNumber, channel: MIDIChannel) {
+        AKLog("stopNote \(note)")
         sampler.stop(noteNumber: offsetNote(note, semitones: synthSemitoneOffset))
     }
 

@@ -16,6 +16,7 @@
 		3404A81820509C7B00A2C9E4 /* FileManagerUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3404A81620509C7B00A2C9E4 /* FileManagerUtils.swift */; };
 		346D627521BB21F600E71C8B /* AudioKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4F1F0D521B31783009249A9 /* AudioKit.framework */; };
 		346D627621BB21F600E71C8B /* AudioKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4F1F0D721B31783009249A9 /* AudioKitUI.framework */; };
+		346D627A21BB2F6F00E71C8B /* AKSampler+moreSFZ.swift in Sources */ = {isa = PBXBuildFile; fileRef = 346D627921BB2F6F00E71C8B /* AKSampler+moreSFZ.swift */; };
 		C48FCEB2211D5E1A000D7717 /* Sounds in Resources */ = {isa = PBXBuildFile; fileRef = C48FCEB1211D5E19000D7717 /* Sounds */; };
 /* End PBXBuildFile section */
 
@@ -60,6 +61,7 @@
 		3404A80C20509A3600A2C9E4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3404A81520509C7B00A2C9E4 /* Conductor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Conductor.swift; sourceTree = "<group>"; };
 		3404A81620509C7B00A2C9E4 /* FileManagerUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileManagerUtils.swift; sourceTree = "<group>"; };
+		346D627921BB2F6F00E71C8B /* AKSampler+moreSFZ.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AKSampler+moreSFZ.swift"; sourceTree = "<group>"; };
 		C48FCEB1211D5E19000D7717 /* Sounds */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Sounds; path = ../../Sounds; sourceTree = "<group>"; };
 		C4F1F0CF21B31783009249A9 /* AudioKit For iOS.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "AudioKit For iOS.xcodeproj"; path = "../../AudioKit/AudioKit/iOS/AudioKit For iOS.xcodeproj"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -98,6 +100,7 @@
 		3404A7FF20509A3600A2C9E4 /* SamplerDemo */ = {
 			isa = PBXGroup;
 			children = (
+				346D627921BB2F6F00E71C8B /* AKSampler+moreSFZ.swift */,
 				3404A81520509C7B00A2C9E4 /* Conductor.swift */,
 				3404A81620509C7B00A2C9E4 /* FileManagerUtils.swift */,
 				3404A80020509A3600A2C9E4 /* AppDelegate.swift */,
@@ -231,6 +234,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				346D627A21BB2F6F00E71C8B /* AKSampler+moreSFZ.swift in Sources */,
 				3404A80320509A3600A2C9E4 /* ViewController.swift in Sources */,
 				3404A81820509C7B00A2C9E4 /* FileManagerUtils.swift in Sources */,
 				3404A81720509C7B00A2C9E4 /* Conductor.swift in Sources */,
@@ -395,6 +399,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 9W69ZP8S5F;
 				INFOPLIST_FILE = SamplerDemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = io.audiokit.SamplerDemo;
@@ -411,6 +416,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 9W69ZP8S5F;
 				INFOPLIST_FILE = SamplerDemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = io.audiokit.SamplerDemo;
