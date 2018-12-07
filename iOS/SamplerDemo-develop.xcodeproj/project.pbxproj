@@ -14,10 +14,26 @@
 		3404A80B20509A3600A2C9E4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3404A80920509A3600A2C9E4 /* LaunchScreen.storyboard */; };
 		3404A81720509C7B00A2C9E4 /* Conductor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3404A81520509C7B00A2C9E4 /* Conductor.swift */; };
 		3404A81820509C7B00A2C9E4 /* FileManagerUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3404A81620509C7B00A2C9E4 /* FileManagerUtils.swift */; };
+		346D627521BB21F600E71C8B /* AudioKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4F1F0D521B31783009249A9 /* AudioKit.framework */; };
+		346D627621BB21F600E71C8B /* AudioKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4F1F0D721B31783009249A9 /* AudioKitUI.framework */; };
 		C48FCEB2211D5E1A000D7717 /* Sounds in Resources */ = {isa = PBXBuildFile; fileRef = C48FCEB1211D5E19000D7717 /* Sounds */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		346D626F21BB1C9500E71C8B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C4F1F0CF21B31783009249A9 /* AudioKit For iOS.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = C42F34FF1C057E03000E937C;
+			remoteInfo = AudioKit;
+		};
+		346D627121BB1C9500E71C8B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C4F1F0CF21B31783009249A9 /* AudioKit For iOS.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = EA7D07001F4E63C200707706;
+			remoteInfo = AudioKitUI;
+		};
 		C4F1F0D421B31783009249A9 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = C4F1F0CF21B31783009249A9 /* AudioKit For iOS.xcodeproj */;
@@ -35,8 +51,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		062904CD1B2B2B3AF1E287FC /* Pods-SamplerDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SamplerDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SamplerDemo/Pods-SamplerDemo.debug.xcconfig"; sourceTree = "<group>"; };
-		33012CBED03FFEE4FB7CB112 /* Pods-SamplerDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SamplerDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-SamplerDemo/Pods-SamplerDemo.release.xcconfig"; sourceTree = "<group>"; };
 		3404A7FD20509A3600A2C9E4 /* SamplerDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SamplerDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3404A80020509A3600A2C9E4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3404A80220509A3600A2C9E4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -46,7 +60,6 @@
 		3404A80C20509A3600A2C9E4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3404A81520509C7B00A2C9E4 /* Conductor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Conductor.swift; sourceTree = "<group>"; };
 		3404A81620509C7B00A2C9E4 /* FileManagerUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileManagerUtils.swift; sourceTree = "<group>"; };
-		523E146B6999BCDE5804C0B0 /* Pods_SamplerDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SamplerDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C48FCEB1211D5E19000D7717 /* Sounds */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Sounds; path = ../../Sounds; sourceTree = "<group>"; };
 		C4F1F0CF21B31783009249A9 /* AudioKit For iOS.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "AudioKit For iOS.xcodeproj"; path = "../../AudioKit/AudioKit/iOS/AudioKit For iOS.xcodeproj"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -56,29 +69,21 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				346D627521BB21F600E71C8B /* AudioKit.framework in Frameworks */,
+				346D627621BB21F600E71C8B /* AudioKitUI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		03E4BD1EDB3AF5EE2E5C61CB /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				062904CD1B2B2B3AF1E287FC /* Pods-SamplerDemo.debug.xcconfig */,
-				33012CBED03FFEE4FB7CB112 /* Pods-SamplerDemo.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
 		3404A7F420509A3600A2C9E4 = {
 			isa = PBXGroup;
 			children = (
 				C4F1F0CF21B31783009249A9 /* AudioKit For iOS.xcodeproj */,
 				3404A7FF20509A3600A2C9E4 /* SamplerDemo */,
 				3404A7FE20509A3600A2C9E4 /* Products */,
-				3404A81220509C1300A2C9E4 /* Frameworks */,
-				03E4BD1EDB3AF5EE2E5C61CB /* Pods */,
+				346D627421BB21F600E71C8B /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -106,10 +111,9 @@
 			path = SamplerDemo;
 			sourceTree = "<group>";
 		};
-		3404A81220509C1300A2C9E4 /* Frameworks */ = {
+		346D627421BB21F600E71C8B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				523E146B6999BCDE5804C0B0 /* Pods_SamplerDemo.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -137,6 +141,8 @@
 			buildRules = (
 			);
 			dependencies = (
+				346D627021BB1C9500E71C8B /* PBXTargetDependency */,
+				346D627221BB1C9500E71C8B /* PBXTargetDependency */,
 			);
 			name = SamplerDemo;
 			productName = AKSamplerDemo;
@@ -228,6 +234,19 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		346D627021BB1C9500E71C8B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = AudioKit;
+			targetProxy = 346D626F21BB1C9500E71C8B /* PBXContainerItemProxy */;
+		};
+		346D627221BB1C9500E71C8B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = AudioKitUI;
+			targetProxy = 346D627121BB1C9500E71C8B /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		3404A80420509A3600A2C9E4 /* Main.storyboard */ = {
@@ -366,11 +385,10 @@
 		};
 		3404A81020509A3600A2C9E4 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 062904CD1B2B2B3AF1E287FC /* Pods-SamplerDemo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 9W69ZP8S5F;
 				INFOPLIST_FILE = SamplerDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = "$(inherited)";
@@ -383,11 +401,10 @@
 		};
 		3404A81120509A3600A2C9E4 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 33012CBED03FFEE4FB7CB112 /* Pods-SamplerDemo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 9W69ZP8S5F;
 				INFOPLIST_FILE = SamplerDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = "$(inherited)";
