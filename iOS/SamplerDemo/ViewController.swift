@@ -8,43 +8,68 @@
 
 import UIKit
 import AudioKit
+import AudioKitUI
 
 class ViewController: UIViewController {
 
     let conductor = Conductor.shared
     var isPlaying = false
+    var currentSound = 0
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         conductor.midi.addListener(self)
+        setupUI()
+        conductor.loadSamples(byIndex: currentSound)
     }
 
-    @IBAction func toggleSound(_ sender: UIButton) {
-        if isPlaying {
-            conductor.stopNote(note: 72, channel: 0)
-            isPlaying = false
-            sender.setTitle("Play", for: .normal)
-        } else {
-            conductor.playNote(note: 72, velocity: 100, channel: 0)
-            isPlaying = true
-            sender.setTitle("Stop", for: .normal)
+
+    func setupUI() {
+        let stackView = UIStackView()
+        stackView.axis = .vertical
+        stackView.distribution = .fillEqually
+        stackView.alignment = .fill
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+
+        let button = AKButton(title: "Change Sound", color: .red) { button in
+            self.currentSound += 1
+            self.currentSound %= 4
+            self.conductor.loadSamples(byIndex: self.currentSound)
         }
+        stackView.addArrangedSubview(button)
+
+        let keyboardView = AKKeyboardView()
+        keyboardView.delegate = self
+        
+        stackView.addArrangedSubview(keyboardView)
+
+
+        view.addSubview(stackView)
+
+        stackView.widthAnchor.constraint(equalToConstant: view.frame.width).isActive = true
+        stackView.heightAnchor.constraint(equalToConstant: view.frame.height).isActive = true
+
+        stackView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+        stackView.centerYAnchor.constraint(equalTo: self.view.centerYAnchor).isActive = true
     }
-    @IBAction func preset1(_ sender: Any) {
-        conductor.loadSamples(byIndex: 0)
-    }
-    @IBAction func preset2(_ sender: Any) {
-        conductor.loadSamples(byIndex: 1)
-    }
-    @IBAction func preset3(_ sender: Any) {
-        conductor.loadSamples(byIndex: 2)
-    }
-    @IBAction func preset4(_ sender: Any) {
-        conductor.loadSamples(byIndex: 3)
-    }
+
 }
 
+extension ViewController: AKKeyboardDelegate {
+
+    func noteOn(note: MIDINoteNumber) {
+        DispatchQueue.main.async {
+            self.conductor.playNote(note: note, velocity: 100, channel: 0)
+        }
+    }
+
+    func noteOff(note: MIDINoteNumber) {
+        DispatchQueue.main.async {
+            self.conductor.stopNote(note: note, channel: 0)
+        }
+    }
+}
 extension ViewController: AKMIDIListener {
 
     func receivedMIDINoteOn(noteNumber: MIDINoteNumber, velocity: MIDIVelocity, channel: MIDIChannel) {
