@@ -11,7 +11,7 @@ import AudioKit
 extension AKSampler {
     open func loadSfzWithEmbeddedSpacesInSampleNames(folderPath: String, sfzFileName: String) {
 
-        //stopAllVoices()
+        stopAllVoices()
         unloadAllSamples()
 
         var lokey: Int32 = 0
@@ -114,6 +114,6 @@ extension AKSampler {
         }
 
         buildKeyMap()
-        //restartVoices()
+        restartVoices()
     }
 }
